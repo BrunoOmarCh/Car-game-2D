@@ -1,0 +1,30 @@
+# Archivos de Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# Configuración de usuario local
+UserSettings/
+
+# Archivos generados por Unity
+*.csproj
+*.unityproj
+*.sln
+*.userprefs
+*.pidb
+*.opendb
+*.VC.db
+
+# Visual Studio Code
+.vscode/
+
+# Archivos de paquete específicos de Unity
+Packages/com.unity.package-manager-ui
+
+# Archivos del sistema de macOS y Windows
+.DS_Store
+Thumbs.db
