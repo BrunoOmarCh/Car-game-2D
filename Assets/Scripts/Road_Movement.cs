@@ -6,7 +6,7 @@ using UnityEngine;
 public class Road_Movement : MonoBehaviour
 {
     public Renderer meshRenderer;
-    float speed = 0.1f;
+    public float speed = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +16,14 @@ public class Road_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
+        
         Vector2 offset = meshRenderer.material.mainTextureOffset;
         offset = offset + new Vector2(0,speed + Time.deltaTime);
         meshRenderer.material.mainTextureOffset = offset;
+        
+        */
+
+        meshRenderer.material.mainTextureOffset += new Vector2(8, speed * Time.deltaTime);
     }
 }
