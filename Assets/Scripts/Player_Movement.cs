@@ -16,6 +16,11 @@ public class Player_Movement : MonoBehaviour
 
     void Update()
     {
+        Movement();
+        Clamp();
+    }
+
+    void Movement(){
         if(Input.GetKey(KeyCode.RightArrow)) 
         { 
             transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
@@ -30,8 +35,12 @@ public class Player_Movement : MonoBehaviour
         }
 
         if(transform.rotation.z != 90){
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion. Euler(0, 0, 0), rotationSpeed*Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion. Euler(0, 0, 0), 10f *Time.deltaTime);
         }
+
+    }
+
+    void Clamp(){
         // Manual way
         if(transform.position.x < -2.58f)
         {
@@ -42,12 +51,10 @@ public class Player_Movement : MonoBehaviour
         {
             transform.position = new Vector3(2.58f, transform.position.y, transform.position.z);
         }
-        
-    
        /* /// Unity Inbuilt feature
         Vector3 pos = transform.position; 
         pos.x= Mathf.Clamp(pos.x, 1.8f, 1.8f); 
         transform.position = pos;
-*/
+        */  
     }
 }
