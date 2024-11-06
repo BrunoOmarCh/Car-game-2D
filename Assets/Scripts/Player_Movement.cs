@@ -7,6 +7,7 @@ public class Player_Movement : MonoBehaviour
 {
     public Transform transform;
     public float speed = 0.5f;
+    public float rotationSpeed = 5f;
 
     void Start()
     {
@@ -17,12 +18,19 @@ public class Player_Movement : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.RightArrow)) 
         { 
-            transform.position += new Vector3(speed * Time.deltaTime, 0, 0);            
+            transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion. Euler(0, 0, -47), rotationSpeed*Time.deltaTime);
+
         }
 
         if(Input.GetKey(KeyCode.LeftArrow)) 
         { 
-            transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);            
+            transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);    
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion. Euler(0, 0, 47), rotationSpeed*Time.deltaTime);                    
+        }
+
+        if(transform.rotation.z != 90){
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion. Euler(0, 0, 0), rotationSpeed*Time.deltaTime);
         }
         // Manual way
         if(transform.position.x < -2.58f)
