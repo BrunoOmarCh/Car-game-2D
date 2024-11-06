@@ -25,8 +25,7 @@ public class Player_Movement : MonoBehaviour
         if(Input.GetKey(KeyCode.RightArrow)) 
         { 
             transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, -40 ), rotationSpeed*Time.deltaTime);
-
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, -10 ), rotationSpeed*Time.deltaTime);
         }
 
         if(Input.GetKey(KeyCode.LeftArrow)) 

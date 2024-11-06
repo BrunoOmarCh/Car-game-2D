@@ -6,7 +6,7 @@ using UnityEngine;
 public class Road_Movement : MonoBehaviour
 {
     public Renderer meshRenderer;
-    public float speed = 0.5f;
+    public float speed = 5f;
     // Start is called before the first frame update
     void Start()
     {
