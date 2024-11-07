@@ -1,4 +1,5 @@
-# Archivos de Unity
+# --- Unity Generated Files ---
+# Excluir carpetas generadas automáticamente
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
@@ -7,10 +8,11 @@
 [Ll]ogs/
 [Mm]emoryCaptures/
 
-# Configuración de usuario local
+# Excluir configuraciones locales del usuario
 UserSettings/
 
-# Archivos generados por Unity
+# --- Unity Specific Files ---
+# Excluir archivos generados por Unity
 *.csproj
 *.unityproj
 *.sln
@@ -19,12 +21,21 @@ UserSettings/
 *.opendb
 *.VC.db
 
+# --- Editor Specific ---
 # Visual Studio Code
 .vscode/
 
-# Archivos de paquete específicos de Unity
-Packages/com.unity.package-manager-ui
+# Visual Studio
+.vs/
 
-# Archivos del sistema de macOS y Windows
+# Rider
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.docstates
+
+# --- OS Generated Files ---
+# Archivos innecesarios de sistemas operativos
 .DS_Store
 Thumbs.db
