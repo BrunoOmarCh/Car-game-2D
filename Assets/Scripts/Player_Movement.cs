@@ -11,10 +11,12 @@ public class Player_Movement : MonoBehaviour
     public float rotationSpeed = 5f;
 
     public Score_Manager scoreValue;
+    public GameObject gameOverPanel;
 
     void Start()
     {
-        
+        gameOverPanel.SetActive(false);
+        Time.timeScale = 1;
     }
 
     void Update()
@@ -64,6 +66,7 @@ public class Player_Movement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision){
         if(collision.gameObject.tag == "Cars"){
             Time.timeScale=0;
+            gameOverPanel.SetActive(true);
         }
         if(collision.gameObject.tag == "Coin")
         {
