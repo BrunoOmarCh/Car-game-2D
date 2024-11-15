@@ -10,16 +10,17 @@ public class Score_Manager : MonoBehaviour
     public int highScore;
     public static int lastScore = 0;
     public Text scoreText;
+    public Text highScoreText;
+    public Text lastScoreText;
+
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(Score());
         highScore = PlayerPrefs.GetInt("high_score", 0); 
-        Debug.Log("High Score Stored: " + PlayerPrefs.GetInt("high_score"));
-        Debug.Log("High Score Get: "+ highScore);
-        Debug.Log("Last Score: " + lastScore);
-
+        highScoreText.text = "HighScore: " + highScore.ToString();
+        lastScoreText.text = "LastScore: " + lastScore.ToString();
     }
 
     // Update is called once per frame
@@ -30,7 +31,6 @@ public class Score_Manager : MonoBehaviour
         {
             highScore = score;
             PlayerPrefs.SetInt("high_score", highScore);
-            Debug.Log("high Score: " + highScore);
         }      
     }
 IEnumerator Score()
@@ -39,6 +39,7 @@ IEnumerator Score()
         {
             yield return new WaitForSeconds(0.8f);
             score = score + 1;
+            lastScore = score;
         }
     }
 
