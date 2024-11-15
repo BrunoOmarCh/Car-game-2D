@@ -10,6 +10,8 @@ public class Player_Movement : MonoBehaviour
     public float speed = 5f;
     public float rotationSpeed = 5f;
 
+    public Score_Manager scoreValue;
+
     void Start()
     {
         
@@ -63,6 +65,10 @@ public class Player_Movement : MonoBehaviour
         if(collision.gameObject.tag == "Cars"){
             Time.timeScale=0;
         }
-        
+        if(collision.gameObject.tag == "Coin")
+        {
+            scoreValue.score +=10;
+            Destroy(collision.gameObject);
+        }
     }
 }
