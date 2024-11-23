@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Player_Movement : MonoBehaviour
 {
-    public Transform transform;
+    //public Transform transform;  Util para versiones anteriores < 2021
     public float speed = 5f;
     public float rotationSpeed = 5f;
 
