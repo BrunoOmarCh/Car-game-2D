@@ -5,14 +5,13 @@ using UnityEngine;
 
 public class Car_Movement : MonoBehaviour
 {
-    public Transform transform;
-
+    //public Transform transform;  Util para versiones anteriores < 2021
     public float speed = 5f;
 
     void Start()
 
     {
-        transform = GetComponent<Transform>();
+        // transform = GetComponent<Transform>();   Util para versiones anteriores < 2021
     }
 
     void Update()
