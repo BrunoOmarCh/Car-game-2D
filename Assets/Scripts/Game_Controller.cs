@@ -11,15 +11,18 @@ public class Game_Controller : MonoBehaviour
 
     private int score;
     private int highScore;
+    public Text scorewinText;
 
     public Score_Manager score_manager;
     public GameObject gamePausePanel;
     public GameObject gamePauseButton;
+    public GameObject gameWinPanel;
     // Start is called before the first frame update
     void Start()
     {
-     gamePausePanel.SetActive(false);
-     gamePauseButton.SetActive(true);        
+         gamePausePanel.SetActive(false);
+         gamePauseButton.SetActive(true);
+         gameWinPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -29,9 +32,20 @@ public class Game_Controller : MonoBehaviour
         score = score_manager.score;
 
         highSoreText.text = "Highscore: " + highScore.ToString();
-        scoreText.text = "Your Score: " + score.ToString();        
+        scoreText.text = "Score: " + score.ToString();
+        scorewinText.text = "Score: " + score.ToString();
+        // Verificar si el puntaje llega a 500
+        if (score >= 50)
+        {
+            // Mostrar el panel de victoria
+            gameWinPanel.SetActive(true);
+            // Ocultar el botón de pausa para evitar interacción
+            gamePauseButton.SetActive(false);
+            Time.timeScale = 0; 
+        }
     }
-        public void Restart()
+
+    public void Restart()
     {
         SceneManager.LoadScene("Game");
     }
@@ -50,4 +64,9 @@ public class Game_Controller : MonoBehaviour
         gamePauseButton.SetActive(true);
     }
 
+    public void NextLevel()
+    {
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Debug.Log("Siguiente");
+    }
 }
