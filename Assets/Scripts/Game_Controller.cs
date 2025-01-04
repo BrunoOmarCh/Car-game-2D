@@ -35,7 +35,7 @@ public class Game_Controller : MonoBehaviour
         scoreText.text = "Score: " + score.ToString();
         scorewinText.text = "Score: " + score.ToString();
         // Verificar si el puntaje llega a 500
-        if (score >= 50)
+        if (score >= 150)
         {
             // Mostrar el panel de victoria
             gameWinPanel.SetActive(true);
@@ -66,7 +66,7 @@ public class Game_Controller : MonoBehaviour
 
     public void NextLevel()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Debug.Log("Siguiente");
     }
 }

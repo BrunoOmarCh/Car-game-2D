@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Cars
   - Coin
+  - Live
   layers:
   - Default
   - TransparentFX
