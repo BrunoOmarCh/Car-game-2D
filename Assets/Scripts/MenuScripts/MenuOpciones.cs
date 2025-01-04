@@ -6,8 +6,12 @@ using UnityEngine.SceneManagement;
 public class MenuOpciones : MonoBehaviour
 {
 
-    public void Nivel1()
+    public void NextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public void NextLevel2()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
 }
