@@ -27,7 +27,7 @@ public class Live_Spawner : MonoBehaviour
     {
         while (true)
         {
-            int time = Random.Range(5, 10);
+            int time = Random.Range(10, 15);
             yield return new WaitForSeconds(time);
             LiveSpawn();
         }
