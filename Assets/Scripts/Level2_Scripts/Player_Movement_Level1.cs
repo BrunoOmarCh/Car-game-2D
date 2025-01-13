@@ -13,11 +13,19 @@ public class Player_Movement_Level1 : MonoBehaviour
     public Score_Manager scoreValue; // Referencia al administrador del puntaje.
     public GameObject gameOverPanel; // Panel de Game Over.
 
+    AudioManager audioManager;
+
+    public void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     void Start()
     {
         // Oculta el panel de Game Over y restablece el tiempo.
         gameOverPanel.SetActive(false);
-        Time.timeScale = 1;      
+        Time.timeScale = 1;
+        
     }
 
     void Update()
@@ -85,12 +93,18 @@ public class Player_Movement_Level1 : MonoBehaviour
             Destroy(collision.gameObject); // Destruye el objeto.
             gameOverPanel.SetActive(true);
             Time.timeScale = 0;
-            
+
+            // Pausar la música de fondo.
+            audioManager.PauseMusic();
+
+            // Opcional: Reproducir el efecto de sonido de victoria.
+            audioManager.PlaySFX(audioManager.death);
         }
 
         // Si colisiona con un objeto con la etiqueta "Coin", incrementa el puntaje.
         if (collision.gameObject.tag == "Coin")
         {
+            audioManager.PlaySFX(audioManager.coins);
             scoreValue.score += 10; // Aumenta el puntaje.
             Destroy(collision.gameObject); // Destruye la moneda.
         }
