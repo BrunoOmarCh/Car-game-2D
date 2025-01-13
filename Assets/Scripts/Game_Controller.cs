@@ -19,6 +19,15 @@ public class Game_Controller : MonoBehaviour
     private int highScore;
     private int targetScore;
 
+    AudioManager audioManager;
+
+
+    public void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,7 +83,16 @@ public class Game_Controller : MonoBehaviour
     {
         gameWinPanel.SetActive(true);
         gamePauseButton.SetActive(false);
-        Time.timeScale = 0; // Pausar el juego
+        Time.timeScale = 0; 
+                            
+        // Pausar la música de fondo.
+        audioManager.PauseMusic();
+
+        // Opcional: Reproducir el efecto de sonido de victoria.
+        audioManager.PlaySFX(audioManager.win);
+
+        // Mostrar una pantalla de victoria o realizar otras acciones.
+        Debug.Log("¡Has ganado el juego!");
     }
 
     public void Restart()
@@ -82,18 +100,24 @@ public class Game_Controller : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    //Botones Pause
     public void PauseGame()
     {
+        // Pausar la música de fondo.
+        audioManager.PauseMusic();
         Time.timeScale = 0;
         gamePausePanel.SetActive(true);
         gamePauseButton.SetActive(false);
     }
 
+    //Boton Resumen
     public void ResumeGame()
     {
+        // Reanudar la música de fondo.
+        audioManager.ResumeMusic();
         Time.timeScale = 1;
         gamePausePanel.SetActive(false);
-        gamePauseButton.SetActive(true);
+        gamePauseButton.SetActive(true); ;
     }
 
     public void NextLevel()

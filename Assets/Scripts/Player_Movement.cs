@@ -14,6 +14,14 @@ public class Player_Movement : MonoBehaviour
     public Text livesText; //// Texto que muestra las vidas del jugador.
     public Score_Manager scoreValue; // Referencia al administrador del puntaje.
     public GameObject gameOverPanel; // Panel de Game Over.
+   
+    AudioManager audioManager;
+
+    public void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+  
 
     void Start()
     {
@@ -88,21 +96,34 @@ public class Player_Movement : MonoBehaviour
         {
             Destroy(collision.gameObject); // Destruye el objeto.
             lives--;                      // Resta una vida.
-
+            
             livesText.text = "Lives: " + lives.ToString();// Actualiza el texto de vidas en la UI.
-
+                                                         
+            //Si el carro choca se escucha sond effect
+            if (lives > 0)
+            {
+                audioManager.PlaySFX(audioManager.crash);
+            }
             // Si las vidas llegan a 0, termina el juego.
             if (lives <= 0)
             {
                 // Muestra el panel de Game Over y detiene el tiempo.
                 gameOverPanel.SetActive(true);
                 Time.timeScale = 0;
+
+                // Pausar la música de fondo.
+                audioManager.PauseMusic();
+
+                // Opcional: Reproducir el efecto de sonido de victoria.
+                audioManager.PlaySFX(audioManager.death);
             }
+
         }
 
         // Si colisiona con un objeto con la etiqueta "Coin", incrementa el puntaje.
         if (collision.gameObject.tag == "Coin")
         {
+            audioManager.PlaySFX(audioManager.coins);
             scoreValue.score += 10; // Aumenta el puntaje.
             Destroy(collision.gameObject); // Destruye la moneda.
         }
@@ -110,6 +131,7 @@ public class Player_Movement : MonoBehaviour
         // Colisión con objetos de la etiqueta "Live" (incrementa vidas).
         if (collision.gameObject.tag == "Live")
         {
+            audioManager.PlaySFX(audioManager.live);
             if (lives < 3) 
             {
                 lives++;               // Incrementa las vidas.                    
