@@ -7,23 +7,19 @@ public class Road_Movement : MonoBehaviour
 {
     public Renderer meshRenderer;
     public float speed = 5f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
-        /*
-        
-        Vector2 offset = meshRenderer.material.mainTextureOffset;
-        offset = offset + new Vector2(0,speed + Time.deltaTime);
-        meshRenderer.material.mainTextureOffset = offset;
-        
-        */
-
-        meshRenderer.material.mainTextureOffset += new Vector2(8, speed * Time.deltaTime);
+        if (meshRenderer != null && meshRenderer.material != null)
+        {
+            Vector2 offset = meshRenderer.material.mainTextureOffset;
+            offset += new Vector2(0, speed * Time.deltaTime);
+            offset.y %= 5; // Mantiene el desplazamiento en el rango [0, 1]
+            meshRenderer.material.mainTextureOffset = offset;
+        }
+        else
+        {
+            Debug.LogWarning("El Renderer o Material no está asignado.");
+        }
     }
 }
