@@ -14,4 +14,8 @@ public class MenuOpciones : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
+    public void NextLevel3()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+    }
 }

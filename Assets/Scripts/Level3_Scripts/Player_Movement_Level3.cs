@@ -5,8 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-//Este player Moment se puede tiene de base el nivel 2 (No lo cambio por posibles errores)
-public class Player_Movement : MonoBehaviour
+public class Player_Movement_Level3 : MonoBehaviour
 {
     public float speed = 5f; // Velocidad de movimiento del jugador.
     public float rotationSpeed = 5f; // Velocidad de rotación del jugador.
@@ -14,14 +13,14 @@ public class Player_Movement : MonoBehaviour
     public Text livesText; //// Texto que muestra las vidas del jugador.
     public Score_Manager scoreValue; // Referencia al administrador del puntaje.
     public GameObject gameOverPanel; // Panel de Game Over.
-   
+
     AudioManager audioManager;
 
     public void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
-  
+
 
     void Start()
     {
@@ -71,14 +70,14 @@ public class Player_Movement : MonoBehaviour
     void Clamp()
     {
         // Restricción manual del movimiento horizontal.
-        if (transform.position.x < -2.58f)
+        if (transform.position.x < -6.20f)
         {
-            transform.position = new Vector3(-2.58f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(-6.20f, transform.position.y, transform.position.z);
         }
 
-        if (transform.position.x > 2.58f)
+        if (transform.position.x > 7.20f)
         {
-            transform.position = new Vector3(2.58f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(7.2f, transform.position.y, transform.position.z);
         }
 
         /*
@@ -92,13 +91,13 @@ public class Player_Movement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Colisión con objetos de la etiqueta "Cars" (resta vidas).
-        if (collision.gameObject.tag == "Cars")
+        if (collision.gameObject.tag == "Cars" || collision.gameObject.tag == "Poste")
         {
             Destroy(collision.gameObject); // Destruye el objeto.
             lives--;                      // Resta una vida.
-            
+
             livesText.text = "Lives: " + lives.ToString();// Actualiza el texto de vidas en la UI.
-                                                         
+
             //Si el carro choca se escucha sond effect
             if (lives > 0)
             {
@@ -128,15 +127,18 @@ public class Player_Movement : MonoBehaviour
             Destroy(collision.gameObject); // Destruye la moneda.
         }
 
+
+
+
         // Colisión con objetos de la etiqueta "Live" (incrementa vidas).
         if (collision.gameObject.tag == "Live")
         {
             audioManager.PlaySFX(audioManager.live);
-            if (lives < 3) 
+            if (lives < 3)
             {
                 lives++;               // Incrementa las vidas.                    
                 livesText.text = "Lives: " + lives.ToString();  // Actualiza el texto de vidas en la UI.
-            }  
+            }
             Destroy(collision.gameObject); // Destruye el objeto de vida.
         }
     }
