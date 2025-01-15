@@ -65,13 +65,13 @@ public class Game_Controller : MonoBehaviour
         switch (currentScene)
         {
             case "Level1":
-                targetScore = 150;
+                targetScore = 100;
                 break;
             case "Level2":
-                targetScore = 300;
+                targetScore = 200;
                 break;
             case "Level3":
-                targetScore = 500;
+                targetScore = 300;
                 break;
             default:
                 targetScore = 200; // Puntaje por defecto
@@ -83,16 +83,9 @@ public class Game_Controller : MonoBehaviour
     {
         gameWinPanel.SetActive(true);
         gamePauseButton.SetActive(false);
-        Time.timeScale = 0; 
-                            
+        Time.timeScale = 0;     
         // Pausar la música de fondo.
-        audioManager.PauseMusic();
-
-        // Opcional: Reproducir el efecto de sonido de victoria.
-        audioManager.PlaySFX(audioManager.win);
-
-        // Mostrar una pantalla de victoria o realizar otras acciones.
-        Debug.Log("¡Has ganado el juego!");
+        audioManager.PauseMusic();  
     }
 
     public void Restart()
