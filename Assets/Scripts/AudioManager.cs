@@ -11,10 +11,10 @@ public class AudioManager : MonoBehaviour
     [Header("------Audio Clip--------")]
     public AudioClip background;
     public AudioClip death;
-    public AudioClip win;
     public AudioClip coins;
     public AudioClip live;
     public AudioClip crash;
+    public AudioClip boom;
 
     public void Start()
     {

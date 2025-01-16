@@ -9,6 +9,7 @@ TagManager:
   - Live
   - Audio
   - Poste
+  - Camion
   layers:
   - Default
   - TransparentFX

@@ -107,6 +107,7 @@ public class Player_Movement : MonoBehaviour
             // Si las vidas llegan a 0, termina el juego.
             if (lives <= 0)
             {
+                audioManager.PlaySFX(audioManager.boom);
                 // Muestra el panel de Game Over y detiene el tiempo.
                 gameOverPanel.SetActive(true);
                 Time.timeScale = 0;
@@ -118,6 +119,18 @@ public class Player_Movement : MonoBehaviour
                 audioManager.PlaySFX(audioManager.death);
             }
 
+        }
+
+
+        // Colisión con objetos de la etiqueta "Cars" (resta vidas).
+        if (collision.gameObject.tag == "Camion")
+        {
+            Destroy(collision.gameObject); // Destruye el objeto.
+            audioManager.PlaySFX(audioManager.boom);
+            gameOverPanel.SetActive(true);// Muestra el panel de Game Over y detiene el tiempo.
+            Time.timeScale = 0;
+            audioManager.PauseMusic(); // Pausar la música de fondo.
+            audioManager.PlaySFX(audioManager.death);
         }
 
         // Si colisiona con un objeto con la etiqueta "Coin", incrementa el puntaje.

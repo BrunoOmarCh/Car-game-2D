@@ -18,15 +18,15 @@ public class CarSpawner2Level3: MonoBehaviour
     void Cars()
     {
         int rand = Random.Range(0, car.Length);
-        float randXPos = Random.Range(1.60f, 3.30f);
-        Instantiate(car[rand], new Vector3(randXPos, transform.position.y, transform.position.z), Quaternion.Euler(0, 0, 90));
+        float randXPos = Random.Range(1.80f, 7.20f);
+        Instantiate(car[rand], new Vector3(randXPos, transform.position.y, transform.position.z), Quaternion.Euler(0, 0, 270));
     }
     IEnumerator SpawnCars()
     {
         while (true)
         {
-            int time = Random.Range(1, 3);
-            yield return new WaitForSeconds(time);
+            
+            yield return new WaitForSeconds(1);
             Cars();
         }
     }

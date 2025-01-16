@@ -91,6 +91,7 @@ public class Player_Movement_Level1 : MonoBehaviour
         if (collision.gameObject.tag == "Cars")
         {
             Destroy(collision.gameObject); // Destruye el objeto.
+            audioManager.PlaySFX(audioManager.boom);
             gameOverPanel.SetActive(true);
             Time.timeScale = 0;
 
