@@ -5,7 +5,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class Player_Movement_Level1 : MonoBehaviour
 {
     public float speed = 5f; // Velocidad de movimiento del jugador.
@@ -15,17 +14,15 @@ public class Player_Movement_Level1 : MonoBehaviour
 
     AudioManager audioManager;
 
-    public void Awake()
-    {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    }
 
     void Start()
     {
         // Oculta el panel de Game Over y restablece el tiempo.
         gameOverPanel.SetActive(false);
         Time.timeScale = 1;
-        
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();// Encuentra el AudioManager y reproduce la música de fondo correctamente.
+        audioManager.musicSource.clip = audioManager.background; // Asigna el clip al musicSource.
+        audioManager.musicSource.Play(); // Reproduce la música de fondo.
     }
 
     void Update()
@@ -94,11 +91,9 @@ public class Player_Movement_Level1 : MonoBehaviour
             audioManager.PlaySFX(audioManager.boom);
             gameOverPanel.SetActive(true);
             Time.timeScale = 0;
-
             // Pausar la música de fondo.
             audioManager.PauseMusic();
-
-            // Opcional: Reproducir el efecto de sonido de victoria.
+            // Opcional: Reproducir el efecto de sonido de fails
             audioManager.PlaySFX(audioManager.death);
         }
 
