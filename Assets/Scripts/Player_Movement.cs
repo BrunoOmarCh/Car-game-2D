@@ -17,10 +17,6 @@ public class Player_Movement : MonoBehaviour
    
     AudioManager audioManager;
 
-    public void Awake()
-    {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    }
   
 
     void Start()
@@ -30,6 +26,9 @@ public class Player_Movement : MonoBehaviour
         Time.timeScale = 1;
         // Actualiza el texto inicial de las vidas.
         livesText.text = "Lives: " + lives.ToString();// Actualiza el texto de vidas en la UI.
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>(); // Encuentra el AudioManager y reproduce la música de fondo correctamente.
+        audioManager.musicSource.clip = audioManager.background; // Asigna el clip al musicSource.
+        audioManager.musicSource.Play(); // Reproduce la música de fondo.
     }
 
     void Update()
@@ -75,12 +74,10 @@ public class Player_Movement : MonoBehaviour
         {
             transform.position = new Vector3(-2.58f, transform.position.y, transform.position.z);
         }
-
         if (transform.position.x > 2.58f)
         {
             transform.position = new Vector3(2.58f, transform.position.y, transform.position.z);
         }
-
         /*
         // Alternativa con Mathf.Clamp.
         Vector3 pos = transform.position;
@@ -95,10 +92,8 @@ public class Player_Movement : MonoBehaviour
         if (collision.gameObject.tag == "Cars")
         {
             Destroy(collision.gameObject); // Destruye el objeto.
-            lives--;                      // Resta una vida.
-            
-            livesText.text = "Lives: " + lives.ToString();// Actualiza el texto de vidas en la UI.
-                                                         
+            lives--;                      // Resta una vida.            
+            livesText.text = "Lives: " + lives.ToString();// Actualiza el texto de vidas en la UI                                           
             //Si el carro choca se escucha sond effect
             if (lives > 0)
             {
@@ -126,6 +121,7 @@ public class Player_Movement : MonoBehaviour
         if (collision.gameObject.tag == "Camion")
         {
             Destroy(collision.gameObject); // Destruye el objeto.
+            livesText.text = "Lives: " + "0";// Actualiza el texto de vidas en la UI a 0 
             audioManager.PlaySFX(audioManager.boom);
             gameOverPanel.SetActive(true);// Muestra el panel de Game Over y detiene el tiempo.
             Time.timeScale = 0;

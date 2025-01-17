@@ -16,10 +16,6 @@ public class Player_Movement_Level3 : MonoBehaviour
 
     AudioManager audioManager;
 
-    public void Awake()
-    {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    }
 
 
     void Start()
@@ -29,6 +25,9 @@ public class Player_Movement_Level3 : MonoBehaviour
         Time.timeScale = 1;
         // Actualiza el texto inicial de las vidas.
         livesText.text = "Lives: " + lives.ToString();// Actualiza el texto de vidas en la UI.
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();// Encuentra el AudioManager y reproduce la música de fondo correctamente.
+        audioManager.musicSource.clip = audioManager.background; // Asigna el clip al musicSource.
+        audioManager.musicSource.Play(); // Reproduce la música de fondo.
     }
 
     void Update()
@@ -128,7 +127,17 @@ public class Player_Movement_Level3 : MonoBehaviour
         }
 
 
-
+        // Colisión con objetos de la etiqueta "Cars" (resta vidas).
+        if (collision.gameObject.tag == "Camion")
+        {
+            Destroy(collision.gameObject); // Destruye el objeto.
+            livesText.text = "Lives: " + "0";// Actualiza el texto de vidas en la UI a 0 
+            audioManager.PlaySFX(audioManager.boom);
+            gameOverPanel.SetActive(true);// Muestra el panel de Game Over y detiene el tiempo.
+            Time.timeScale = 0;
+            audioManager.PauseMusic(); // Pausar la música de fondo.
+            audioManager.PlaySFX(audioManager.death);
+        }
 
         // Colisión con objetos de la etiqueta "Live" (incrementa vidas).
         if (collision.gameObject.tag == "Live")
