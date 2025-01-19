@@ -77,6 +77,9 @@ public class Game_Controller : MonoBehaviour
             case "Level3":
                 targetScore = 300;
                 break;
+            case "Level4":
+                targetScore = 400;
+                break;
             default:
                 targetScore = 200; // Puntaje por defecto
                 break;
@@ -142,5 +145,11 @@ public class Game_Controller : MonoBehaviour
             Debug.Log("No hay más niveles disponibles.");
             // Podrías mostrar un mensaje o redirigir al menú principal
         }
+    }
+
+    public void Inicio()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 4);
+
     }
 }
