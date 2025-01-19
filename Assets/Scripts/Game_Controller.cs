@@ -38,6 +38,7 @@ public class Game_Controller : MonoBehaviour
         // Establecer el puntaje objetivo según la escena
         SetTargetScoreByScene();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        highScore = PlayerPrefs.GetInt("high_score", 0);
     }
 
     public void Restart()
